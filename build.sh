@@ -1,1 +1,1 @@
-docker build -t sebastianconcept/mup-server .
+docker build -t sebastianconcept/mup-frontend-server .
