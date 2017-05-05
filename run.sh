@@ -1,6 +1,5 @@
 docker run -it \
-  --volume=/opt/nginx/conf/bundle.pem:/bundle.crt \
-  --volume=/opt/nginx/conf/private.key:/private.key \
-  --link=meteor:backend \
+  --volume=/..app/config/staging/bundle.crt:/bundle.crt \
+  --volume=/..app/config/staging/private-key.pem:/private.key \
   --publish=443:443 \
-  meteorhacks:mup-ssl-server /start.sh
+  sebastianconcept/mup-server:latest /start.sh
