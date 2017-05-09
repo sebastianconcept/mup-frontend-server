@@ -1,20 +1,22 @@
 # Frontend Server for Meteor Up
 
-This is the front end server used by Meteor Up in front of meteor apps. This is the latest version of nginx bundled as a docker image. It is configured to run with every app deployed with Meteor Up. But, this is not a Load Balancer.
+Docker container with nginx customized to proxy to a meteor app
 
-## For SSL Support
+## SSL Support
 
-We use this for SSL support for Mup.
+This container adds SSL support to the meteor-up setup. The way we are configuring nginx makes it to redirect all `http` traffic to `https`.
 
-Here's how to run this:
+Here's how to run this in the target host:
 
 ~~~shell
 docker run \
   --volume=/opt/<appname>/config/bundle.crt:/bundle.crt \
   --volume=/opt/<appname>/config/private.key:/private.key \
+  --volume=/opt/<appname>/config/dhparam.pem:/dhparam.pem \
   --link=<appname>:backend \
+  --publish=80:80 \
   --publish=443:443 \
-  meteorhacks/mup-frontend-server /start.sh
+  sebastianconcept/mup-frontend-server /start.sh
 ~~~
 
 As you've noticed, we need to add two volumes for the `bundle.crt` and `private.key`.
