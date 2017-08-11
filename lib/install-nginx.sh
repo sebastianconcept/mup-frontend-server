@@ -2,7 +2,7 @@
 set -e
 
 BUILD_DIR=/tmp/nginx
-NGINX_VERSION=1.9.4
+NGINX_VERSION=1.13.4
 PREFIX=/opt/nginx
 NGINX_USER=nginx
 
